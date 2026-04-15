@@ -96,3 +96,24 @@ We welcome contributions to the tide_analytics project. If you have any ideas, b
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
+
+## CSV Tide Report Script
+
+For direct CSV workflows (columns such as `Timestamp`, `PRS1 (m)`, `PRS2 (m)`, `RAD1 (m)`), use:
+
+```bash
+python scripts/csv_tide_report.py \
+  --input path/to/data.csv \
+  --column "PRS1 (m)" \
+  --output-dir output
+```
+
+The script automatically provides:
+- time-domain plot export (`tide_timeseries.png`)
+- outlier detection (Hampel)
+- offset adjustment (`--offset`)
+- low-pass filtering (Butterworth)
+- harmonic constants CSV exports:
+  - `harmonic_constants_4.csv` (M2, S2, K1, O1)
+  - `harmonic_constants_9.csv` (M2, S2, K1, O1, N2, K2, P1, Q1, M4)
+  - `harmonic_summary.csv` (mean level per model)
